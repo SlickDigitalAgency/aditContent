@@ -1,3 +1,4 @@
+import axios from "axios";
 import { ProjectData } from "../types";
 
 const BASE_URL = ""; // For local development, you can leave it empty
@@ -5,12 +6,18 @@ const BASE_URL = ""; // For local development, you can leave it empty
 export const projectsService = {
   async getProjects(): Promise<ProjectData[]> {
     try {
-      const response = await fetch(`${BASE_URL}/db.json`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch projects");
+      // Use axios to fetch data from the given URL
+      const response = await axios.get(`${BASE_URL}/db.json`);
+
+      // Check if the response contains the expected data
+      if (!response.data || !response.data.projects) {
+        throw new Error(
+          "Failed to fetch projects: Data is missing or malformed."
+        );
       }
-      const data = await response.json();
-      return data.projects;
+
+      // Return the projects from the response data
+      return response.data.projects;
     } catch (error) {
       console.error("Error fetching projects:", error);
       return [];

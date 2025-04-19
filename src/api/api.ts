@@ -1,8 +1,12 @@
 import { TestimonialData, ServiceData } from "../types";
-import * as Icons from "lucide-react";
+import * as Icons from "lucide-react"; // Import all icons from lucide-react
 
 const BASE_URL = ""; // For local development, you can leave it empty
 
+// Helper type for Icon keys
+type IconName = keyof typeof Icons;
+
+// Testimonial service
 export const testimonialService = {
   async getTestimonials(): Promise<TestimonialData[]> {
     try {
@@ -19,6 +23,7 @@ export const testimonialService = {
   },
 };
 
+// Service service (with dynamic icon mapping)
 export const servicesService = {
   async getServices(): Promise<ServiceData[]> {
     try {
@@ -28,8 +33,10 @@ export const servicesService = {
       }
       const data = await response.json();
 
-      return data.services.map((service: ServiceData & { icon: keyof typeof Icons }) => {
-        const IconComponent = Icons[service.icon]; // Access the icon component from Lucide
+      // Map the services with their icons
+      return data.services.map((service: ServiceData & { icon: string }) => {
+        // Safely access the icon from the Icons object
+        const IconComponent = Icons[service.icon as IconName];
 
         if (!IconComponent) {
           console.warn(`Icon '${service.icon}' not found, using default icon.`);
