@@ -1,3 +1,4 @@
+// Home.tsx
 import { useEffect, useState } from "react";
 import { HeroSection } from "../../components/hero/HeroSection";
 import { Testimonial } from "../../components/testimonial/Testimonial";
@@ -6,7 +7,8 @@ import { OurServices } from "../../components/services/OurServices";
 import { AboutTeamSection } from "../../components/about/AboutTeamSection";
 import { ctaContent } from "../../data/Data";
 import { TestimonialData, ServiceData, Project } from "../../types";
-import { testimonialService, servicesService } from "../../api/api";
+import { servicesService } from "../../api/apiservices";
+import { testimonialService } from "../../api/apitestimonial";
 import { getProjects } from "../../api/portfolio"; // Correct import
 import ProjectGrid from "../../components/common/grid/ProjectGrid";
 

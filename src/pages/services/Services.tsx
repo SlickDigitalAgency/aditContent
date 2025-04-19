@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Testimonial } from "../../components/testimonial/Testimonial";
 import { ServiceData, TestimonialData } from "../../types";
-import { servicesService, testimonialService } from "../../api/api";
+import { servicesService } from "../../api/apiservices";
+import { testimonialService } from "../../api/apitestimonial";
 import ServiceHero from "../../components/services/ServiceHero";
 import { CallToAction } from "../../components/cta/CallToAction";
 import { ctaContent } from "../../data/Data";
