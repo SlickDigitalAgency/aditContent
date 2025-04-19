@@ -1,5 +1,3 @@
-// Services.tsx
-
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
@@ -34,7 +32,7 @@ export const OurServices = ({ services }: ServicesProps) => {
     return () => {
       tl.kill();
     };
-  }, []);
+  }, []); // Only run once on mount
 
   const containerVariants = {
     hidden: { opacity: 0 },

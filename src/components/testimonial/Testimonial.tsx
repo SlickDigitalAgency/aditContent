@@ -1,4 +1,3 @@
-// src/components/testimonial/Testimonial.tsx
 import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
