@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-adit-black: 0 0 0;
+    --color-adit-blue-dark: 10 26 47;
+    --color-adit-blue-light: 30 58 138;
+    --color-adit-aqua: 0 245 255;
+  }
+
+  body {
+    @apply bg-adit-black text-white antialiased;
+  }
+}
+
+.glassmorphism {
+  @apply backdrop-blur-xl bg-white/10 border border-white/10;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-adit-black;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-adit-aqua/30 rounded-full hover:bg-adit-aqua/50 transition-colors;
+}
