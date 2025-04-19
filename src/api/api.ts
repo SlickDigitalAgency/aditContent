@@ -1,3 +1,4 @@
+import axios from "axios";
 import { TestimonialData, ServiceData } from "../types";
 import * as Icons from "lucide-react"; // Import all icons from lucide-react
 
@@ -10,12 +11,8 @@ type IconName = keyof typeof Icons;
 export const testimonialService = {
   async getTestimonials(): Promise<TestimonialData[]> {
     try {
-      const response = await fetch(`${BASE_URL}/db.json`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch testimonials");
-      }
-      const data = await response.json();
-      return data.testimonials;
+      const response = await axios.get(`${BASE_URL}/db.json`);
+      return response.data.testimonials;
     } catch (error) {
       console.error("Error fetching testimonials:", error);
       return [];
@@ -27,11 +24,8 @@ export const testimonialService = {
 export const servicesService = {
   async getServices(): Promise<ServiceData[]> {
     try {
-      const response = await fetch(`${BASE_URL}/db.json`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch services");
-      }
-      const data = await response.json();
+      const response = await axios.get(`${BASE_URL}/db.json`);
+      const data = response.data;
 
       // Map the services with their icons
       return data.services.map((service: ServiceData & { icon: string }) => {

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ServicesProps } from "../../types";
-import { cn } from "../../utils/cn";
+import { cn } from "../../utils/cn"; // Utility function for classnames
 
 gsap.registerPlugin(ScrollTrigger);
 
