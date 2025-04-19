@@ -20,5 +20,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "ProjectGrid.tsx"]
+  "include": ["src", "ProjectGrid.tsx", "src/components/common/grid"]
 }

@@ -1,27 +1,42 @@
-import { motion } from "framer-motion"; // Import motion for animations
-import { Project } from "../../../types"; // Import the Project type
-import { ProjectCard } from "../cards/ProjectCard"; // Import ProjectCard component
+import Masonry from "react-masonry-css";
+import { motion } from "framer-motion";
+import { Project } from "../../../types";
+import { ProjectCard } from "../cards/ProjectCard";
 
 interface ProjectsGridProps {
-  projects: Project[]; // Change to Project[] if you are passing Project type to the component
-  layout?: "masonry" | "bento"; // Optional layout prop
+  projects: Project[];
+  layout?: "masonry" | "bento";
 }
+
+const breakpointColumnsObj = {
+  default: 3,
+  1600: 3,
+  1280: 3,
+  1024: 2,
+  768: 1,
+};
 
 const ProjectsGrid = ({ projects, layout = "bento" }: ProjectsGridProps) => {
   if (layout === "masonry") {
     return (
-      <div className="columns-1 md:columns-2 lg:columns-3 gap-4 px-4 max-w-7xl mx-auto space-y-4">
-        {projects.map((project, index) => (
-          <motion.div
-            key={project.id}
-            className="break-inside-avoid mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-          >
-            <ProjectCard project={project} layout="masonry" />
-          </motion.div>
-        ))}
+      <div className="container mx-auto px-4 py-12">
+        <Masonry
+          breakpointCols={breakpointColumnsObj}
+          className="flex w-auto -ml-4"
+          columnClassName="pl-4 bg-clip-padding"
+        >
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="mb-4 break-inside-avoid"
+            >
+              <ProjectCard project={project} layout="masonry" />
+            </motion.div>
+          ))}
+        </Masonry>
       </div>
     );
   }

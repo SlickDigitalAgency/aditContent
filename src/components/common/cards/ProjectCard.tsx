@@ -6,7 +6,7 @@ import { cn } from "../../../utils/cn";
 
 interface ProjectCardProps {
   project: Project;
-  layout?: "bento" | "masonry"; // dynamic layout
+  layout?: "bento" | "masonry";
   size?: "small" | "medium" | "large"; // only used for bento layout
   className?: string;
 }
@@ -23,6 +23,25 @@ export const ProjectCard = ({
       : size === "small"
       ? "aspect-[3/4]"
       : "aspect-square";
+
+  if (layout === "masonry") {
+    return (
+      <Link to={`/portfolio/${project.slug}`} className="block mb-4">
+        <motion.div
+          whileHover={{ y: -5 }}
+          transition={{ duration: 0.3 }}
+          className="overflow-hidden rounded-lg shadow-md"
+        >
+          <img
+            src={project.thumbnail}
+            alt={project.title}
+            className="w-full h-auto object-cover"
+            loading="lazy"
+          />
+        </motion.div>
+      </Link>
+    );
+  }
 
   return (
     <Link to={`/portfolio/${project.slug}`}>
