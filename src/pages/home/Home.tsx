@@ -7,7 +7,7 @@ import { AboutTeamSection } from "../../components/about/AboutTeamSection";
 import { ctaContent } from "../../data/Data";
 import { TestimonialData, ServiceData, Project } from "../../types";
 import { testimonialService, servicesService } from "../../api/api";
-import { projectsService } from "../../api/projects";
+import { getProjects } from "../../api/portfolio"; // Correct import
 import ProjectGrid from "../../components/common/grid/ProjectGrid";
 
 export const Home = () => {
@@ -24,7 +24,7 @@ export const Home = () => {
           await Promise.all([
             testimonialService.getTestimonials(),
             servicesService.getServices(),
-            projectsService.getProjects(),
+            getProjects(), // Correctly call getProjects
           ]);
         setTestimonials(fetchedTestimonials);
         setServices(fetchedServices);
@@ -32,11 +32,11 @@ export const Home = () => {
         // Convert ProjectData[] to Project[] here
         setProjects(
           fetchedProjects
-            .filter((project) => project.video) // Ensure video is present
-            .map((project) => ({
+            .filter((project: Project) => project.video) // Ensure video is present
+            .map((project: Project) => ({
               ...project,
               video: project.video || "", // Provide default video if missing
-            })) as Project[]
+            }))
         );
       } catch (error) {
         setError("Failed to load data");
